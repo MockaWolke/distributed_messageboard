@@ -1,11 +1,11 @@
+import os
+
+os.chdir(os.path.dirname(__file__))  # change working directory to the file's directory
 from flask import Flask, request, render_template, jsonify
 import json
 import requests
 from inferece import is_offensive
 from loguru import logger
-import os
-
-os.chdir(os.path.dirname(__file__))  # change working directory to the file's directory
 
 # Class-based application configuration
 class ConfigClass(object):
