@@ -54,6 +54,9 @@ def register_command():
         return
 
 
+logger.info("trying to register")
+register_command()
+
 def check_authorization(request):
     global CHANNEL_AUTHKEY
     # check if Authorization header is present
