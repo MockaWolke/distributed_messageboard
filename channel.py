@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, jsonify
 import json
 import requests
 from inferece import is_offensive
-
+from loguru import logger
 
 # Class-based application configuration
 class ConfigClass(object):
@@ -11,21 +11,23 @@ class ConfigClass(object):
     # Flask settings
     SECRET_KEY = "This is an INSECURE secret!! DO NOT use this in production!!"
 
+logger.add("channel.log")
 
 # Create Flask app
 app = Flask(__name__)
 app.config.from_object(__name__ + ".ConfigClass")  # configuration
 app.app_context().push()  # create an app context before initializing db
 
-HUB_URL = "http://localhost:5555"
-HUB_AUTHKEY = "1234567890"
-CHANNEL_AUTHKEY = "0987654321"
-CHANNEL_NAME = "The moderated channel"
+HUB_URL = "https://temporary-server.de"
+HUB_AUTHKEY = "Crr-K3d-2N"
+CHANNEL_AUTHKEY = "difficultkey"
+CHANNEL_NAME = "TheModeratedChannel"
 CHANNEL_ENDPOINT = (
     "http://localhost:5001"  # don't forget to adjust in the bottom of the file
 )
 CHANNEL_FILE = "messages.json"
 
+logger.info("Starting channel server")
 
 @app.cli.command("register")
 def register_command():
@@ -45,7 +47,7 @@ def register_command():
     )
 
     if response.status_code != 200:
-        print("Error creating channel: " + str(response.status_code))
+        logger.error("Error creating channel: " + str(response.status_code))
         return
 
 

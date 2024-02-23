@@ -5,5 +5,5 @@ We check if incomming messages contain offensive language using the https://hugg
 ### Downloading and exporting model to onnx
 
 ```
-optimum-cli export onnx --model cardiffnlp/twitter-roberta-base-offensive  --task sequence-classification
+optimum-cli export onnx --model cardiffnlp/twitter-roberta-base-offensive  --task sequence-classification onnx_model
 ```
